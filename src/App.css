@@ -1,1 +1,8 @@
-
+.layout-basic-demo {
+  text-align: center;
+  font-stretch: condensed;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
