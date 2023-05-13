@@ -31,28 +31,40 @@ export default function HeaderTitle() {
                             在线判题系统(OJ)
                         </div>
                     </MenuItem>
-                    <MenuItem key='1' >
-                        <IconHome />
-                        <Link to="/home">首页</Link>
-                    </MenuItem>
-                    <MenuItem key='2'>
-                        <IconList />
-                        <Link to="/list">题集</Link>
-                    </MenuItem>
-                    <MenuItem key='4' disabled>
-                        <IconFile />
-                        <Link to="/mkpro">出题</Link>
-                    </MenuItem>
-                    <MenuItem key='3' disabled>
-                        <IconSelectAll />
-                        <Link to="/percheck">个人评测</Link>
-                    </MenuItem>
-                    <MenuItem key='5'>
-                        <Link to="/login">登录</Link>
-                    </MenuItem>
-                    <MenuItem key='6'>
-                        <Link to="/register">注册</Link>
-                    </MenuItem>
+                    <Link to="/home">
+                        <MenuItem key='1' >
+                            <IconHome />
+                            首页
+                        </MenuItem>
+                    </Link>
+                    <Link to="/list">
+                        <MenuItem key='2'>
+                            <IconList />
+                            题集
+                        </MenuItem>
+                    </Link>
+                    <Link to="/mkpro">
+                        <MenuItem key='4' disabled>
+                            <IconFile />
+                            出题
+                        </MenuItem>
+                    </Link>
+                    <Link to="/percheck">
+                        <MenuItem key='3' disabled>
+                            <IconSelectAll />
+                            个人评测
+                        </MenuItem>
+                    </Link>
+                    <Link to="/login">
+                        <MenuItem key='5'>
+                            登录
+                        </MenuItem>
+                    </Link>
+                    <Link to="/register">
+                        <MenuItem key='6'>
+                            注册
+                        </MenuItem>
+                    </Link>
                 </Menu>
             </div>
         </>

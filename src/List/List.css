@@ -1,0 +1,14 @@
+.list {
+  display: flex;
+  align-items: flex-start;
+  justify-content: left;
+  margin-top: 75px;
+  margin-left: 200px;
+}
+.arco-table-td {
+  color: #2971cf;
+  padding: 10px 20;
+}
+.arco-table-th {
+  color: #052f78;
+}
