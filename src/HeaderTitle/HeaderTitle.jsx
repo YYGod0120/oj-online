@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import './HeaderTitle.css'
-import { Menu, PageHeader } from "@arco-design/web-react";
+import { Menu, } from "@arco-design/web-react";
 import { IconList, IconHome, IconFile, IconSelectAll } from '@arco-design/web-react/icon';
 const MenuItem = Menu.Item;
 // const SubMenu = Menu.SubMenu;
@@ -13,18 +13,23 @@ export default function HeaderTitle() {
                 <Menu mode='horizontal' defaultSelectedKeys={['1']}>
                     <MenuItem
                         key='0'
-                        style={{ padding: 0, marginRight: 800, }}
-                        disabled
+                        style={{ padding: 0, marginRight: 600, }}
+
                     >
                         <div
                             style={{
-                                width: 20,
+                                width: 200,
                                 height: 20,
                                 borderRadius: 2,
                                 background: 'var(--color-fill-3)',
                                 cursor: 'text',
+                                color: 'var(--color-neutral-8)',
+                                fontSize: "24px"
+
                             }}
-                        />
+                        >
+                            在线判题系统(OJ)
+                        </div>
                     </MenuItem>
                     <MenuItem key='1' >
                         <IconHome />
