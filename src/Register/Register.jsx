@@ -5,6 +5,7 @@ import "./Register.css"
 
 
 
+
 const FormItem = Form.Item;
 export default function Login() {
     const [form] = Form.useForm()
@@ -61,6 +62,7 @@ export default function Login() {
                         </Button>
                     </FormItem>
                 </Form>
+
             </div>
 
         </>
