@@ -1,9 +1,9 @@
 import React from 'react'
-import { Select, Input, Space } from '@arco-design/web-react';
+import { Select, Space } from '@arco-design/web-react';
 import { Outlet } from 'react-router-dom'
+import MyCodeMirror from '../MyCodeMirror/MyCodeMirror';
 import './Problem.css'
 const Option = Select.Option;
-const TextArea = Input.TextArea
 const options = ['C', 'Python', 'Java', 'C++'];
 export default function Problem() {
     return (
@@ -16,12 +16,9 @@ export default function Problem() {
                             {option}
                         </Option>
                     ))}
-                </Select>
-                <Input.Group compact>
-                    <TextArea style={{ minHeight: 500, width: 10, backgroundColor: 'rgb(72, 72, 72)', border: 'none' }} readonly />
-                    <TextArea placeholder='' style={{ minHeight: 500, width: 500, resize: 'none', backgroundColor: '#2B2B2B', color: '#A9B7C6', border: 'none' }} />
-                </Input.Group>
 
+                </Select>
+                <MyCodeMirror />
             </Space>
         </Space>
 
