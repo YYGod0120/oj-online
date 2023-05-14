@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 export const columns = [
   {
     title: "题号",
@@ -10,6 +11,13 @@ export const columns = [
     bodyCellStyle: {
       width: 500,
     },
+    render: (text, record) => (
+      <div>
+        <Link to={`/problems/${record.problem_id}`}>
+          <span>{text}</span>
+        </Link>
+      </div>
+    ),
   },
 ];
 export const data = [

@@ -1,4 +1,5 @@
 import { Form, Input, Button, Message } from '@arco-design/web-react';
+import { IconUser, IconLock } from '@arco-design/web-react/icon';
 import React from 'react'
 import "./Register.css"
 
@@ -24,10 +25,16 @@ export default function Login() {
                     }}
                 >
                     <FormItem field='name' rules={[{ required: true, message: '请输入用户名' }]}>
-                        <Input placeholder='请输入用户名' />
+                        <Input
+                            placeholder='请输入用户名'
+                            prefix={<IconUser />}
+                        />
                     </FormItem>
                     <FormItem field='password' rules={[{ required: true, message: '请输入密码' }]}>
-                        <Input placeholder='请输入密码' />
+                        <Input.Password
+                            placeholder="请输入密码"
+                            prefix={<IconLock />}
+                        />
                     </FormItem>
                     <FormItem
                         field='confirm_password'
@@ -43,7 +50,10 @@ export default function Login() {
                             }
                         }]}
                     >
-                        <Input placeholder='请确认密码' />
+                        <Input.Password
+                            prefix={<IconLock />}
+                            placeholder="请确认密码"
+                        />
                     </FormItem>
                     <FormItem>
                         <Button type='primary' htmlType='submit' long>

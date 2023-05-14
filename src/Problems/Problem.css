@@ -1,0 +1,14 @@
+.P_wrap {
+  display: flex;
+  margin-top: 100px;
+}
+
+.arco-select .arco-select-view {
+  border-color: var(--color-neutral-6);
+}
+.arco-select.arco-select-focused .arco-select-view {
+  border-color: var(--color-neutral-6);
+}
+.select {
+  caret-color: transparent;
+}

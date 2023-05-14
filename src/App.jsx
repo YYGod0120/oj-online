@@ -14,10 +14,7 @@ const App = () => {
     <div>
       <div className="layout-basic-demo">
         <Layout style={{}}>
-          <Header
-            className={"custom-header"}
-
-          >
+          <Header>
             <HeaderTitle />
           </Header>
           <Content>
