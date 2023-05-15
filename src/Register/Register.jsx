@@ -2,7 +2,7 @@ import { Form, Input, Button, Message } from '@arco-design/web-react';
 import { IconUser, IconLock } from '@arco-design/web-react/icon';
 import React from 'react'
 import "./Register.css"
-
+import MyCodeMirror from '../MyCodeMirror/MyCodeMirror';
 
 
 
@@ -62,7 +62,7 @@ export default function Login() {
                         </Button>
                     </FormItem>
                 </Form>
-
+                {/* <MyCodeMirror></MyCodeMirror> */}
             </div>
 
         </>

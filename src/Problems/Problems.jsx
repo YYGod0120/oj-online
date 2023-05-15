@@ -4,9 +4,9 @@ import { Outlet } from 'react-router-dom'
 import MyCodeMirror from '../MyCodeMirror/MyCodeMirror';
 import './Problem.css'
 const Option = Select.Option;
-const options = ['Python', 'Java'];
+const options = ['python', 'java', 'javascript', 'c', 'c++'];
 export default function Problem() {
-    const [selectValue, setSelectValue] = useState('Java')
+    const [selectValue, setSelectValue] = useState('javascript')
 
     function handleSelectChange(value) {
 
@@ -21,18 +21,18 @@ export default function Problem() {
                 <Select
                     placeholder='Select city'
                     className={'select'}
-                    style={{ width: 100, border: '1px solid var(--color-neutral-6)', borderRadius: 1 }}
-                    defaultValue='Java'
+                    style={{ width: 110, border: '1px solid var(--color-neutral-6)', borderRadius: 1 }}
+                    defaultValue='javascript'
                     onChange={handleSelectChange}
                 >
                     {options.map((option, index) => (
-                        <Option key={option} disabled={index === 4} value={option}>
+                        <Option key={option} disabled={index === 5} value={option}>
                             {option}
                         </Option>
                     ))}
                 </Select>
-                <MyCodeMirror language={{ selectValue }} />
-                <Space align='end' size={570}>
+                <MyCodeMirror language={selectValue} />
+                <Space align='end' size={470}>
                     <Button disabled>
 
                     </Button>
