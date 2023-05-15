@@ -1,10 +1,8 @@
 .list {
-  display: flex;
-  align-items: flex-start;
-  justify-content: left;
-  margin-top: 75px;
-  margin-left: 200px;
+  text-decoration: none;
+  color: #2971cf;
 }
+
 .arco-table-td {
   color: #2971cf;
   padding: 10px 20;

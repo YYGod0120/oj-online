@@ -13,7 +13,7 @@ export const columns = [
     },
     render: (text, record) => (
       <div>
-        <Link to={`/problems/${record.problem_id}`}>
+        <Link to={`/problems/${record.problem_id}`} className="list">
           <span>{text}</span>
         </Link>
       </div>

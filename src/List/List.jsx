@@ -7,26 +7,26 @@ const InputSearch = Input.Search;
 
 export default function List() {
     return (
-        <div className={'list'}>
+
+
+        <Space wrap align='start' style={{ marginTop: 70 }}>
             <Table columns={columns} data={data} border={{
                 wrapper: true,
                 headerCell: true,
             }}
-                pagination={{ pageSize: 40 }}
+                pagination={{ pageSize: 20 }}
                 pagePosition='bottomCenter'
             />
-            <Space wrap>
+            <InputSearch
+                searchButton
+                defaultValue=''
+                placeholder='输入标题或者题号'
+                style={{ width: 300 }}
+            // loading
+            />
 
-                <InputSearch
-                    searchButton
-                    defaultValue=''
-                    placeholder='输入标题或者题号'
-                    style={{ width: 300 }}
-                // loading
-                />
+        </Space>
 
-            </Space>
-        </div>
 
     )
 }

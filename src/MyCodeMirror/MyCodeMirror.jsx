@@ -7,16 +7,12 @@ import "ace-builds/src-noconflict/mode-python";
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/ext-language_tools";
 import './MyCodeMirror.css'
-export default function MyCodeMirror() {
-  const options = {
-    selectOnLineNumbers: true
-  };
-  const language = [
+export default function MyCodeMirror({ language }) {
 
-  ]
+
   return (
     <AceEditor
-      mode="java"
+      mode={{ language }}
       theme='monokai'
       fontSize={16}
       showPrintMargin={false}
