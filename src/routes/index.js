@@ -7,6 +7,8 @@ import Login from "../Login/Login";
 import List from "../List/List";
 import Problems from "../Problems/Problems";
 import Problem from "../Problems/Problem";
+import ChangePassword from "../ChangePassword/ChangePassword";
+import Percheck from "../Problems/PerCheck";
 // eslint-disable-next-line import/no-anonymous-default-export
 export default [
   {
@@ -33,5 +35,13 @@ export default [
     path: "/problems",
     element: <Problems />,
     children: [{ path: ":id", element: <Problem></Problem> }],
+  },
+  {
+    path: "/cpw",
+    element: <ChangePassword />,
+  },
+  {
+    path: "/percheck",
+    element: <Percheck />,
   },
 ];

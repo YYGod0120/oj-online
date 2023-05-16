@@ -8,3 +8,15 @@
 .menu-demo .arco-menu-inner {
   overflow-y: auto;
 }
+.cp {
+  text-decoration: none;
+  color: #2971cf;
+}
+.dropdown-demo > .arco-btn {
+  padding: 0 8px;
+  font-weight: normal;
+}
+
+.dropdown-demo .arco-dropdown-popup-visible .arco-icon-down {
+  transform: rotate(180deg);
+}

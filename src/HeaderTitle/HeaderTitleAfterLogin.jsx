@@ -1,15 +1,20 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import './HeaderTitle.css'
-import { Menu, } from "@arco-design/web-react";
-import { IconList, IconHome, IconFile, IconSelectAll } from '@arco-design/web-react/icon';
+import { Menu, Dropdown, Button, Space } from "@arco-design/web-react";
+
+import { IconList, IconHome, IconFile, IconSelectAll, IconUser } from '@arco-design/web-react/icon';
 
 const MenuItem = Menu.Item;
 
-
-// const SubMenu = Menu.SubMenu;
-export default function HeaderTitle() {
-
+export default function LoginAndReg() {
+    const dropList = (
+        <Menu>
+            <Link to="/cpw" className='cp'>
+                <Menu.Item key='0_1' >修改密码</Menu.Item>
+            </Link>
+            <Menu.Item key='0_2'>退出！</Menu.Item>
+        </Menu>
+    );
     return (
         <>
             <div className='menu-demo'>
@@ -47,32 +52,30 @@ export default function HeaderTitle() {
                         </MenuItem>
                     </Link>
                     <Link to="/mkpro">
-                        <MenuItem key='4' disabled>
+                        <MenuItem key='4' >
                             <IconFile />
                             出题
                         </MenuItem>
                     </Link>
                     <Link to="/percheck">
-                        <MenuItem key='3' disabled>
+                        <MenuItem key='3' >
                             <IconSelectAll />
                             个人评测
                         </MenuItem>
                     </Link>
 
-
-
-                    <Link to="/login">
-                        <MenuItem key='5'>
-                            登录
-                        </MenuItem>
-                    </Link>
-                    <Link to="/register">
-                        <MenuItem key='6'>
-                            注册
-                        </MenuItem>
-                    </Link>
+                    <MenuItem>
+                        <Space className='dropdown-demo'>
+                            <Dropdown droplist={dropList} position='bl'>
+                                <Button type='text' >
+                                    <IconUser />name
+                                </Button>
+                            </Dropdown>
+                        </Space>
+                    </MenuItem>
                 </Menu>
             </div>
         </>
+
     )
 }

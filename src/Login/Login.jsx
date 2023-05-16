@@ -21,11 +21,11 @@ export default function Login() {
                     <FormItem >
                         <Input.Password
                             placeholder="passward"
-                            style={{ width: 400 }}
+
                             prefix={<IconLock />}
                         />
                     </FormItem>
-                    <FormItem wrapperCol={{ offset: 5 }}>
+                    <FormItem wrapperCol={{ offset: 7 }}>
                         <Button type='primary'>登录</Button>
                     </FormItem>
                 </Form>
