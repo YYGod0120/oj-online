@@ -8,7 +8,9 @@ import List from "../List/List";
 import Problems from "../Problems/Problems";
 import Problem from "../Problems/Problem";
 import ChangePassword from "../ChangePassword/ChangePassword";
-import Percheck from "../Problems/PerCheck";
+import Check from "../Problems/Check/Check";
+
+import MakeProblem from "../Problems/MakeProblem/MakeProblem";
 // eslint-disable-next-line import/no-anonymous-default-export
 export default [
   {
@@ -41,7 +43,11 @@ export default [
     element: <ChangePassword />,
   },
   {
-    path: "/percheck",
-    element: <Percheck />,
+    path: "/check",
+    element: <Check />,
+  },
+  {
+    path: "/mkpro",
+    element: <MakeProblem />,
   },
 ];
