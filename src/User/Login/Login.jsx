@@ -1,7 +1,8 @@
 
-import { Form, Input, Button } from '@arco-design/web-react';
+import { Form, Input, Button, Space } from '@arco-design/web-react';
 import { IconUser, IconLock } from '@arco-design/web-react/icon';
 import React from 'react'
+import { Link } from "react-router-dom";
 import "./Login.css"
 
 
@@ -26,8 +27,16 @@ export default function Login() {
                         />
                     </FormItem>
                     <FormItem wrapperCol={{ offset: 7 }}>
-                        <Button type='primary'>登录</Button>
+                        <Space size={40}>
+                            <Button type='outline'>登录</Button>
+                            <Link to="/register">
+                                <Button type='dashed'>新用户注册</Button>
+                            </Link>
+                        </Space>
+
+
                     </FormItem>
+
                 </Form>
             </div>
 

@@ -19,7 +19,7 @@ export default function HeaderTitle() {
         '/mkpro': '3',
         '/check': '4',
         '/login': '5',
-        '/register': '6'
+        '/cpw': '6'
     }
     const dropList = (
         <Menu>
@@ -102,7 +102,7 @@ export default function HeaderTitle() {
 
                     {token ? (
                         <>
-                            <MenuItem>
+                            <MenuItem key='6'>
                                 <Space className='dropdown-demo'>
                                     <Dropdown droplist={dropList} position='bl'>
                                         <Button type='text' >
@@ -117,11 +117,6 @@ export default function HeaderTitle() {
                             <Link to="/login">
                                 <MenuItem key='5'>
                                     登录
-                                </MenuItem>
-                            </Link>
-                            <Link to="/register">
-                                <MenuItem key='6'>
-                                    注册
                                 </MenuItem>
                             </Link>
                         </>

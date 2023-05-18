@@ -1,13 +1,13 @@
 //路由表配置：src/routes/index.js
 
 import Home from "../Home/Home";
-import Register from "../Register/Register";
+import Register from "../User/Register/Register";
 import { Navigate } from "react-router-dom";
-import Login from "../Login/Login";
+import Login from "../User/Login/Login";
 import List from "../List/List";
 import Problems from "../Problems/Problems";
 import Problem from "../Problems/Problem";
-import ChangePassword from "../ChangePassword/ChangePassword";
+import ChangePassword from "../User/ChangePassword/ChangePassword";
 import Check from "../Problems/Check/Check";
 
 import MakeProblem from "../Problems/MakeProblem/MakeProblem";
@@ -18,16 +18,16 @@ export default [
     element: <Login />,
   },
   {
+    path: "/register",
+    element: <Register />,
+  },
+  {
     path: "/home",
     element: <Home />,
   },
   {
     path: "/",
     element: <Navigate to="/home" />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
   },
   {
     path: "/list",
