@@ -8,16 +8,14 @@ const MenuItem = Menu.Item;
 
 
 // const SubMenu = Menu.SubMenu;
-export default function HeaderTitle() {
-    const [token, setToken] = useState(localStorage.getItem('token'))
-    const [userId, setUserId] = useState(localStorage.getItem('userId'))
-    const [admId, setAdmId] = useState(localStorage.getItem('admId'))
+export default function HeaderTitle({ token, userId, admId }) {
+
     const { pathname } = useLocation()
     const keys = {
         '/home': '1',
         '/list': '2',
-        '/mkpro': '3',
-        '/check': '4',
+        '/mkpro': '4',
+        '/check': '3',
         '/login': '5',
         '/cpw': '6'
     }
@@ -26,7 +24,15 @@ export default function HeaderTitle() {
             <Link to="/cpw" className='cp'>
                 <Menu.Item key='0_1' >修改密码</Menu.Item>
             </Link>
-            <Menu.Item key='0_2'>退出！</Menu.Item>
+            <Menu.Item
+                key='0_2'
+                onClick={() => {
+                    localStorage.removeItem('token')
+                    localStorage.removeItem('userId')
+                    localStorage.removeItem('admId')
+                    window.location.reload()
+                }}
+            >退出！</Menu.Item>
         </Menu>
     );
     return (

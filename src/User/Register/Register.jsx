@@ -1,15 +1,29 @@
 import { Form, Input, Button, Message } from '@arco-design/web-react';
 import { IconUser, IconLock } from '@arco-design/web-react/icon';
 import React from 'react'
+import { useNavigate } from "react-router-dom";
 import "./Register.css"
 
 
 
 
 const FormItem = Form.Item;
+const url = 'http://47.108.221.20:2333/user/register'
 function startsWithLetter(str) {
     const firstChar = str.charAt(0);
     return /[A-Z]/i.test(firstChar);
+}
+const register = async function (url, body) {
+    const rep = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+    })
+    return await rep.json()
+
+
 }
 export default function Register() {
     const regex =
@@ -17,6 +31,7 @@ export default function Register() {
 
     const regexSpace = /\s/;
     const [form] = Form.useForm()
+    const navigate = useNavigate();
     return (
         <>
             <div className='Register'>
@@ -28,9 +43,24 @@ export default function Register() {
                     onValuesChange={(v, vs) => {
                         console.log(v, vs);
                     }}
-                    onSubmit={(v) => {
+                    onSubmit={async (v) => {
                         console.log(v);
-                        Message.success('success');
+                        const rep = await register(url,
+                            {
+                                "username": v.name,
+                                "password": v.password
+                            }
+                        )
+                        console.log(rep);
+                        if (rep.status === 200) {
+                            Message.success('注册成功')
+
+                            navigate("/login", {
+                                replace: false
+                            })
+                        } else {
+                            Message.error('注册用户已存在')
+                        }
                     }}
                 >
                     <FormItem field='name' rules={[{
@@ -99,12 +129,13 @@ export default function Register() {
                         />
                     </FormItem>
                     <FormItem>
-                        <Button type='primary' htmlType='submit' long>
+                        <Button type='primary' htmlType='submit' long onClick={() => {
+
+                        }}>
                             注册
                         </Button>
                     </FormItem>
                 </Form>
-
             </div>
 
         </>

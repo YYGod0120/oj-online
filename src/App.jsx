@@ -10,13 +10,15 @@ const Footer = Layout.Footer;
 const Content = Layout.Content;
 const App = () => {
   const element = useRoutes(routes)
-
+  const [token, setToken] = useState(localStorage.getItem('token'))
+  const [userId, setUserId] = useState(localStorage.getItem('userId'))
+  const [admId, setAdmId] = useState(localStorage.getItem('admId'))
   return (
     <div>
       <div className="layout-basic-demo">
         <Layout style={{}}>
           <Header>
-            <HeaderTitle />
+            <HeaderTitle token={token} userId={userId} admId={admId} />
           </Header>
           <Content>
             {element}

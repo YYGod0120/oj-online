@@ -4,8 +4,13 @@ import { Table } from '@arco-design/web-react';
 import { columns, data } from "./ListNumber"
 import { Input, Space } from '@arco-design/web-react';
 const InputSearch = Input.Search;
+const getData = async function () {
+    const rep = 1;
 
+}
+const promblems = getData()
 export default function List() {
+
     return (
 
 
