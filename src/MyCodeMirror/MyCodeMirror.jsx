@@ -4,10 +4,11 @@ import AceEditor from "react-ace";
 import { Ref, useEffect } from 'react';
 
 import './MyCodeMirror.css'
-export default function MyCodeMirror({ language }) {
+export default function MyCodeMirror({ language, onChange }) {
   console.log(language);
+
   return (
 
-    <Editor height="90vh" width='600px' language={language} defaultValue="" theme='vs-dark' />
+    <Editor height="90vh" width='600px' language={language} defaultValue="" onChange={onChange} theme='vs-dark' />
   )
 }

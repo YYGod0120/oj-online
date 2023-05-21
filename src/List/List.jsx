@@ -68,7 +68,7 @@ export default function List() {
                     <InputSearch
                         searchButton
                         defaultValue=''
-                        placeholder='输入标题或者题号'
+                        placeholder='输入关键字'
                         style={{ width: 250 }}
                         onSearch={(event) => {
                             setSearchText(event)
