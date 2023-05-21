@@ -112,7 +112,7 @@ export default function HeaderTitle({ token, userId, admId }) {
                                 <Space className='dropdown-demo'>
                                     <Dropdown droplist={dropList} position='bl'>
                                         <Button type='text' >
-                                            <IconUser />name
+                                            <IconUser />{`${localStorage.getItem('username')}`}
                                         </Button>
                                     </Dropdown>
                                 </Space>

@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom'
 import MyCodeMirror from '../MyCodeMirror/MyCodeMirror';
 import './Problem.css'
 const Option = Select.Option;
-const options = ['python', 'java', 'javascript', 'c', 'c++'];
+const options = ['python', 'java', 'go', 'c', 'c++'];
 export default function Problem() {
     const [selectValue, setSelectValue] = useState('javascript')
 
@@ -22,7 +22,7 @@ export default function Problem() {
                     placeholder='Select city'
                     className={'select'}
                     style={{ width: 110, border: '1px solid var(--color-neutral-6)', borderRadius: 1 }}
-                    defaultValue='javascript'
+                    defaultValue='python'
                     onChange={handleSelectChange}
                 >
                     {options.map((option, index) => (

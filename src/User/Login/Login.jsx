@@ -33,14 +33,14 @@ export default function Login() {
                     }}
                     onSubmit={async (v) => {
                         console.log(v);
+                        localStorage.setItem('username', v.username)
                         console.log(v.username);
                         console.log(v.password);
                         const data = await login(url, {
                             "username": v.username,
                             "password": v.password
                         })
-                        // eslint-disable-next-line no-undef
-                        console.log(BigInt(data.data.user_id));
+
                         if (data.status === 200) {
                             localStorage.setItem('token', data.data.token)
                             // eslint-disable-next-line no-undef
