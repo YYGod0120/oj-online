@@ -46,10 +46,8 @@ export default function Problem() {
 
                         <Title>{problem.title}</Title>
                         <Paragraph style={{ textAlign: 'start', marginLeft: 20 }}>
-                            {problem.description}A design is a plan or specification for the construction
-                            of an object or system or for the implementation of an activity or process, or the resu
-                            lt of that plan or specification in the form of a prototype, product or process. The ver
-                            b to design expresses the process of developing a design. In some cases, the direct construction of an object without an explicit prior plan (such as in craftwork, some engineering, coding, and graphic design) may also be considered to be a design activity.
+                            {problem.description}
+
                         </Paragraph>
                         <Typography.Title
                             style={{ textAlign: 'start', marginLeft: 20, marginTop: 70 }}

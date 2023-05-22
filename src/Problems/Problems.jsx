@@ -7,24 +7,30 @@ import { Grid } from '@arco-design/web-react';
 const Row = Grid.Row;
 const Col = Grid.Col;
 const Option = Select.Option;
-const options = ['python', 'java', 'go', 'c', 'c++'];
+const options = ['Python', 'Java', 'Go', 'C', 'C++'];
 export default function Problem() {
 
+
+
+
+
     let { id } = useParams()
-    // eslint-disable-next-line no-undef
+    id = id - 0
 
-    console.log(id);
+    console.log(typeof id);
 
-    const userId = localStorage.getItem('userId') - 0
+    let userId = localStorage.getItem('userId') - 0
 
-    console.log(userId);
 
-    const [selectValue, setSelectValue] = useState('python')
+    console.log(typeof userId);
+
+    const [selectValue, setSelectValue] = useState('Python')
     const [code, setCode] = useState('')
     const handleSubmit = async function () {
         const rep = await fetch('http://47.108.221.20:2333/submission/sumbit', {
             method: 'POST',
             headers: {
+                'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.getItem('token')
             },
             body:
@@ -63,7 +69,7 @@ export default function Problem() {
                         placeholder='Select city'
                         className={'select'}
                         style={{ width: 110, border: '1px solid var(--color-neutral-6)', borderRadius: 1 }}
-                        defaultValue='python'
+                        defaultValue='Python'
                         onChange={handleSelectChange}
                     >
                         {options.map((option, index) => (
@@ -75,6 +81,8 @@ export default function Problem() {
                     <MyCodeMirror language={selectValue} onChange={(ev, value) => {
                         setCode(ev)
                         console.log(ev);
+                        console.log(typeof ev);
+
                     }} />
                     <Space align='end' size={470}>
                         <Button disabled>
