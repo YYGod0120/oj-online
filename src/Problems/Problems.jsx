@@ -9,11 +9,6 @@ const Col = Grid.Col;
 const Option = Select.Option;
 const options = ['Python', 'Java', 'Go', 'C', 'C++'];
 export default function Problem() {
-
-
-
-
-
     let { id } = useParams()
     id = id - 0
 
@@ -26,8 +21,16 @@ export default function Problem() {
 
     const [selectValue, setSelectValue] = useState('Python')
     const [code, setCode] = useState('')
+    console.log(JSON.stringify({
+        // eslint-disable-next-line no-undef
+        "user_id": userId,
+        // eslint-disable-next-line no-undef
+        "problem_id": id,
+        "code": code,
+        "language": selectValue,
+    }));
     const handleSubmit = async function () {
-        const rep = await fetch('http://47.108.221.20:2333/submission/sumbit', {
+        const rep = await fetch("http://47.108.221.20:2333/submission/submit", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -36,20 +39,20 @@ export default function Problem() {
             body:
                 JSON.stringify({
                     // eslint-disable-next-line no-undef
-                    'user_id': userId,
+                    "user_id": userId,
                     // eslint-disable-next-line no-undef
-                    'problem_id': id,
-                    'code': code,
-                    'language': selectValue
-                })
+                    "problem_id": id,
+                    "code": code,
+                    "language": selectValue,
+                }),
+            redirect: 'follow'
         })
         const data = await rep.json()
         console.log(data);
         return data
+
     }
-    // async function handleSubmit(url) {
-    //     const submitResult = await getRep(url)
-    // }
+
 
 
     function handleSelectChange(value) {
@@ -90,7 +93,7 @@ export default function Problem() {
                         </Button>
                         <Button
                             type='primary'
-                            htmlType='submit'
+
                             long
                             style={{ width: 100 }}
                             onClick={handleSubmit}
