@@ -1,17 +1,29 @@
 import React, { useState } from 'react'
 import { Navigate } from 'react-router-dom'
-import MPP from './MPP'
-
+import { Message, Space, Grid } from '@arco-design/web-react';
+import MakeProSide from './MakeProSide';
+import MPP from './MakeProMain'
+import './MPP.css'
+const Row = Grid.Row;
+const Col = Grid.Col;
 export default function MakeProblem() {
-    const [admId, setAdmId] = useState(Number(localStorage.getItem('admId')))
-
+    const [admId, setAdmId] = useState(localStorage.getItem('admId'))
+    console.log(admId);
+    if (admId === null) {
+        Message.info('你没有此权限')
+    }
     return (
         <>
             {admId !== null ? (
-                <div>
-                    NewPro
-                    <MPP userId={admId} />
-                </div >
+                <Row style={{ marginTop: 48 }} gutter={50}>
+                    <Col span={7}>
+                        <MakeProSide></MakeProSide>
+                    </Col>
+                    <Col span={16}>
+                        <MPP admId={admId} />
+                    </Col>
+                </Row>
+
             ) : (
                 <Navigate to={"/home"} />
             )

@@ -2,7 +2,7 @@ import React from 'react'
 import { Typography } from '@arco-design/web-react';
 export default function CustomContent() {
   return (
-    <Typography>
+    <Typography style={{ textAlign: 'center' }}>
       <div style={{ "marginTop": 200 }}></div>
       <Typography.Title
         style={{ fontSize: "50px" }}

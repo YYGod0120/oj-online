@@ -13,26 +13,27 @@ const getData = async function (url, body) {
         body: JSON.stringify(body),
     });
     const data = await rep.json()
+
     console.log(data);
     return data
 }
-const { Title, Paragraph, Text } = Typography;
+const { Title, Paragraph } = Typography;
 export default function Problem() {
     const { id } = useParams()
+    const problem_id = id - 0
     const [problem, setProblem] = useState(null)
     useEffect(() => {
         const fetchPro = async () => {
             const problem = await getData(url, {
-                method: 'POST',
-                body: JSON.stringify({
-                    problem_id: id,
-                })
+                problem_id: problem_id,
+
             })
-            console.log(problem.data[0]);
+
+            console.log(problem);
             setProblem(problem.data[0])
         }
         fetchPro()
-    }, [id])
+    }, [problem_id])
 
 
     return (

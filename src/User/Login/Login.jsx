@@ -44,7 +44,9 @@ export default function Login() {
                         if (data.status === 200) {
                             localStorage.setItem('token', data.data.token)
                             // eslint-disable-next-line no-undef
-                            localStorage.setItem('userId', BigInt(data.data.user_id))
+                            localStorage.setItem('userId', data.data.user_id)
+                            //先设置管理员id和用户id一样之后再做调整
+                            localStorage.setItem('admId', data.data.user_id)
                             console.log(data.data.user_id);
                             Message.success('登录成功');
                             window.location.reload()

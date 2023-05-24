@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Select, Space, Button } from '@arco-design/web-react';
-import { Outlet, useParams } from 'react-router-dom'
+import { Select, Space, Button, Message } from '@arco-design/web-react';
+import { Outlet, useParams, useNavigate } from 'react-router-dom'
 import MyCodeMirror from '../MyCodeMirror/MyCodeMirror';
 import './Problem.css'
 import { Grid } from '@arco-design/web-react';
@@ -9,16 +9,10 @@ const Col = Grid.Col;
 const Option = Select.Option;
 const options = ['Python', 'Java', 'Go', 'C', 'C++'];
 export default function Problem() {
+    const navigate = useNavigate()
     let { id } = useParams()
     id = id - 0
-
-    console.log(typeof id);
-
     let userId = localStorage.getItem('userId') - 0
-
-
-    console.log(typeof userId);
-
     const [selectValue, setSelectValue] = useState('Python')
     const [code, setCode] = useState('')
     console.log(JSON.stringify({
@@ -48,6 +42,12 @@ export default function Problem() {
             redirect: 'follow'
         })
         const data = await rep.json()
+        if (data.status === 200) {
+            Message.success('提交成功')
+            navigate("/check")
+        } else {
+            Message.error('请登陆或登录已过期')
+        }
         console.log(data);
         return data
 
