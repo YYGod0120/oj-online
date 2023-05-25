@@ -1,7 +1,4 @@
-const problem_id_url = "http://47.108.221.20:2333/submission/search";
-const problem_url = "http://47.108.221.20:2333/problem/search";
-const user_id = localStorage.getItem("userId") - 0;
-async function getProblem_id(url) {
+export async function getProblem_id(user_id, url) {
   const rep = await fetch(url, {
     method: "POST",
     headers: {
@@ -13,8 +10,8 @@ async function getProblem_id(url) {
     }),
   });
   const data0 = await rep.json();
-  console.log(data0.data.problem_id);
-  return data0.data.problem_id;
+  console.log(data0);
+  return data0.data;
 }
 
 export const columns = [
@@ -39,4 +36,3 @@ export const columns = [
     dataIndex: "level",
   },
 ];
-console.log(columns);
