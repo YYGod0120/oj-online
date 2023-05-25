@@ -6,7 +6,7 @@ const { Title, Paragraph } = Typography;
 export default function PerCheckSide() {
     return (
         <div style={{ fontSize: 24, marginTop: 24 }}>
-            <IconUser />     {'用户'}
+            <IconUser style={{ textAlign: 'start' }} />     {'用户'}
             <Paragraph style={{ marginBottom: 50, marginTop: 40 }}>{localStorage.getItem('username')}</Paragraph>
 
             <Link to='/list'>

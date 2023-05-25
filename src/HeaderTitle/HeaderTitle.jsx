@@ -107,17 +107,20 @@ export default function HeaderTitle({ token, userId, admId }) {
 
 
                     {token ? (
-                        <>
+
+                        <Link to="/user">
                             <MenuItem key='6'>
                                 <Space className='dropdown-demo'>
                                     <Dropdown droplist={dropList} position='bl'>
                                         <Button type='text' >
-                                            <IconUser />{`${localStorage.getItem('username')}`}
+                                            {`${localStorage.getItem('username')}`}
                                         </Button>
                                     </Dropdown>
                                 </Space>
                             </MenuItem>
-                        </>
+                        </Link>
+
+
                     ) : (
                         <>
                             <Link to="/login">

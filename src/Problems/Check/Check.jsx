@@ -19,7 +19,7 @@ export default function Check() {
                 <Row style={{ marginTop: 48 }} gutter={50}>
                     <Col span={7}>
                         <PerCheckSide />
-                        <Divider style={{ backgroundColor: '#daf232' }} type='vertical' />
+
                     </Col>
                     <Col span={16}>
                         <PerCheck userId={userId} />

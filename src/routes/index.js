@@ -9,7 +9,7 @@ import Problems from "../Problems/Problems";
 import Problem from "../Problems/Problem";
 import ChangePassword from "../User/ChangePassword/ChangePassword";
 import Check from "../Problems/Check/Check";
-
+import User from "../User/User/User.jsx";
 import MakeProblem from "../Problems/MakeProblem/MakeProblem";
 // eslint-disable-next-line import/no-anonymous-default-export
 export default [
@@ -49,5 +49,9 @@ export default [
   {
     path: "/mkpro",
     element: <MakeProblem />,
+  },
+  {
+    path: "/user",
+    element: <User />,
   },
 ];
