@@ -11,6 +11,7 @@ import ChangePassword from "../User/ChangePassword/ChangePassword";
 import Check from "../Problems/Check/Check";
 import User from "../User/User/User.jsx";
 import MakeProblem from "../Problems/MakeProblem/MakeProblem";
+import UserEdit from "../User/User/UserEdit";
 // eslint-disable-next-line import/no-anonymous-default-export
 export default [
   {
@@ -53,5 +54,6 @@ export default [
   {
     path: "/user",
     element: <User />,
+    children: [{ path: "edit", element: <UserEdit></UserEdit> }],
   },
 ];

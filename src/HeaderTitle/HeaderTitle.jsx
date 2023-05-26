@@ -17,15 +17,21 @@ export default function HeaderTitle({ token, userId, admId }) {
         '/mkpro': '4',
         '/check': '3',
         '/login': '5',
-        '/cpw': '6'
+        '/cpw': '6',
+        '/user': '6',
+        '/user/edit': '6',
+
     }
     const dropList = (
         <Menu>
+            <Link to="/user/edit" className='cp'>
+                <Menu.Item key='0_1' >个人简介</Menu.Item>
+            </Link>
             <Link to="/cpw" className='cp'>
-                <Menu.Item key='0_1' >修改密码</Menu.Item>
+                <Menu.Item key='0_2' >修改密码</Menu.Item>
             </Link>
             <Menu.Item
-                key='0_2'
+                key='0_3'
                 onClick={() => {
                     localStorage.removeItem('token')
                     localStorage.removeItem('userId')
