@@ -54,6 +54,5 @@ export default [
   {
     path: "/user",
     element: <User />,
-    children: [{ path: "edit", element: <UserEdit></UserEdit> }],
   },
 ];

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import './HeaderTitle.css'
 import { Menu, Dropdown, Space, Button } from "@arco-design/web-react";
 import { IconList, IconHome, IconFile, IconSelectAll, IconUser } from '@arco-design/web-react/icon';
@@ -9,7 +9,7 @@ const MenuItem = Menu.Item;
 
 // const SubMenu = Menu.SubMenu;
 export default function HeaderTitle({ token, userId, admId }) {
-
+    const navigate = useNavigate()
     const { pathname } = useLocation()
     const keys = {
         '/home': '1',
@@ -19,12 +19,12 @@ export default function HeaderTitle({ token, userId, admId }) {
         '/login': '5',
         '/cpw': '6',
         '/user': '6',
-        '/user/edit': '6',
+
 
     }
     const dropList = (
         <Menu>
-            <Link to="/user/edit" className='cp'>
+            <Link to="/user" className='cp'>
                 <Menu.Item key='0_1' >个人简介</Menu.Item>
             </Link>
             <Link to="/cpw" className='cp'>
@@ -36,7 +36,8 @@ export default function HeaderTitle({ token, userId, admId }) {
                     localStorage.removeItem('token')
                     localStorage.removeItem('userId')
                     localStorage.removeItem('admId')
-                    window.location.reload()
+                    navigate('/home')
+
                 }}
             >退出！</Menu.Item>
         </Menu>
