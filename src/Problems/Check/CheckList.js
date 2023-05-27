@@ -1,13 +1,11 @@
-export async function getProblem_id(user_id, url) {
+export async function getProblem_id(url, body) {
   const rep = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + localStorage.getItem("token"),
     },
-    body: JSON.stringify({
-      user_id: user_id,
-    }),
+    body: JSON.stringify(body),
   });
   const data0 = await rep.json();
   console.log(data0);

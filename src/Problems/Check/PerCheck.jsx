@@ -1,22 +1,50 @@
-import React, { useState, useEffect } from 'react'
-import { getProblem_id, columns } from './CheckList'
-import { Grid, Typography, Input, Table } from '@arco-design/web-react';
+import React, { useState, useEffect } from 'react';
+import { Grid, Typography, Input, Table, Message } from '@arco-design/web-react';
+import { getProblem_id, columns } from './CheckList';
+
 const Row = Grid.Row;
 const Col = Grid.Col;
 const InputSearch = Input.Search;
 const problem_id_url = "http://47.108.221.20:2333/submission/search";
+
 export default function PerCheck({ userId }) {
-    const user_id = userId - 0
-    const [data, setData] = useState([])
+    const user_id = userId - 0;
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        async function getData() {
-            let data = await getProblem_id(user_id, problem_id_url)
-            setData(data)
-            console.log(data);
+        getData();
+    }, [user_id]);
+
+    async function getData() {
+        setLoading(true);
+        try {
+            const result = await getProblem_id(problem_id_url, { user_id: user_id });
+            setData(result);
+            console.log(result);
+        } catch (error) {
+            // 处理错误情况
+            Message.error("获取数据时出错:", error);
+        } finally {
+            setLoading(false);
         }
-        getData()
-    }, [user_id])
+    }
+
+    const handleSearch = async (value) => {
+        setLoading(true);
+        try {
+            const result = await getProblem_id(problem_id_url, {
+                user_id: user_id,
+                problem_id: parseInt(value)
+            });
+            setData(result);
+        } catch (error) {
+            // 处理错误情况
+            console.error("搜索数据时出错:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <>
@@ -30,14 +58,19 @@ export default function PerCheck({ userId }) {
                         defaultValue=''
                         placeholder='请输入题号'
                         style={{ width: 300, textAlign: 'end' }}
+                        onSearch={handleSearch}
                     />
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    <Table columns={columns} data={data} />;
+                    {loading ? (
+                        <Typography.Text>Loading...</Typography.Text>
+                    ) : (
+                        <Table columns={columns} data={data} />
+                    )}
                 </Col>
             </Row>
         </>
-    )
+    );
 }
