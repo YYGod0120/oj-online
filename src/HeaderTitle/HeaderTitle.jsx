@@ -15,6 +15,8 @@ export default function HeaderTitle({ token, userId, admId }) {
         '/home': '1',
         '/list': '2',
         '/mkpro': '4',
+        '/mkpro/post': '4',
+        '/mkpro/textdata': '4',
         '/check': '3',
         '/login': '5',
         '/cpw': '6',
@@ -37,7 +39,7 @@ export default function HeaderTitle({ token, userId, admId }) {
                     localStorage.removeItem('userId')
                     localStorage.removeItem('admId')
                     navigate('/home')
-
+                    window.location.reload()
                 }}
             >退出！</Menu.Item>
         </Menu>
@@ -80,7 +82,7 @@ export default function HeaderTitle({ token, userId, admId }) {
                     </Link>
                     {admId ? (
                         <>
-                            <Link to="/mkpro">
+                            <Link to="/mkpro/post">
                                 <MenuItem key='4'>
                                     <IconFile />
                                     出题

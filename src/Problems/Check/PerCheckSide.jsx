@@ -2,7 +2,7 @@ import React from 'react'
 import { IconUser, IconPlusCircle } from '@arco-design/web-react/icon';
 import { Menu, Typography, Button } from '@arco-design/web-react';
 import { Link } from 'react-router-dom';
-const { Title, Paragraph } = Typography;
+const { Paragraph } = Typography;
 export default function PerCheckSide() {
     return (
         <div style={{ fontSize: 24, marginTop: 24 }}>

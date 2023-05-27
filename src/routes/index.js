@@ -11,7 +11,9 @@ import ChangePassword from "../User/ChangePassword/ChangePassword";
 import Check from "../Problems/Check/Check";
 import User from "../User/User/User.jsx";
 import MakeProblem from "../Problems/MakeProblem/MakeProblem";
-import UserEdit from "../User/User/UserEdit";
+import MPP from "../Problems/MakeProblem/MakeProMain";
+import TextData from "../Problems/TextData/TextData";
+const admId = localStorage.getItem("admId");
 // eslint-disable-next-line import/no-anonymous-default-export
 export default [
   {
@@ -50,6 +52,10 @@ export default [
   {
     path: "/mkpro",
     element: <MakeProblem />,
+    children: [
+      { path: "post", element: <MPP damId={admId}></MPP> },
+      { path: "text", element: <TextData></TextData> },
+    ],
   },
   {
     path: "/user",

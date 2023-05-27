@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Navigate } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 import { Message, Space, Grid } from '@arco-design/web-react';
 import MakeProSide from './MakeProSide';
 import MPP from './MakeProMain'
@@ -20,7 +20,7 @@ export default function MakeProblem() {
                         <MakeProSide></MakeProSide>
                     </Col>
                     <Col span={16}>
-                        <MPP admId={admId} />
+                        <Outlet></Outlet>
                     </Col>
                 </Row>
 
