@@ -144,12 +144,6 @@ function EditableTable({ p_id }) {
 
         },
         {
-            title: '测试数据编号',
-            dataIndex: 'test_id',
-
-
-        },
-        {
             title: '输入',
             dataIndex: 'input',
             editable: true
@@ -220,18 +214,18 @@ function EditableTable({ p_id }) {
 
         setCount(count + 1);
 
-        add_data(url_add, {
+        const test_id = await add_data(url_add, {
             problem_id: problem_id,
             user_id: user_id,
             input: '请自己修改',
             output: '请自己修改'
         })
-        const data_list = await search_data(url_get + '/' + problem_id)
+
         setData(
             data.concat({
                 key: `${count + 1}`,
                 problem_id: problem_id,
-                test_id: testId,
+                test_id: test_id,
                 input: '请自己修改',
                 output: '请自己修改',
                 user_id: user_id
@@ -239,7 +233,7 @@ function EditableTable({ p_id }) {
         );
         setTestId(testId + 1)
     }
-
+    console.log(data);
     return (
         <>
             <Row>

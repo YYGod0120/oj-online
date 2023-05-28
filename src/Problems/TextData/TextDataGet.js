@@ -37,7 +37,7 @@ export async function add_data(url, body) {
     })
   ).json();
   console.log(data);
-  return data;
+  return data.data.test_id;
 }
 export async function update_data(url, body) {
   const data = await (
