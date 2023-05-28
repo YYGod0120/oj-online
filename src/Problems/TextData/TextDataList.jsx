@@ -6,11 +6,11 @@ import React, {
     useCallback
 } from 'react';
 import { Button, Table, Input, Select, Form, Grid, Message } from '@arco-design/web-react';
-import { search_data } from './TextDataGet'
+import { search_data, delete_data, update_data, add_data } from './TextDataGet'
 const Row = Grid.Row
 const Col = Grid.Col
-
-
+const user_id = localStorage.getItem('userId') - 0
+// console.log(user_id);
 const FormItem = Form.Item;
 const InputSearch = Input.Search;
 const EditableContext = React.createContext({});
@@ -128,7 +128,9 @@ function EditableCell(props) {
     );
 }
 
-function EditableTable() {
+function EditableTable({ p_id }) {
+    console.log(p_id);
+    const [testId, setTestId] = useState(44)
     const url_get = `http://47.108.221.20:2333/test/search`
     const url_add = 'http://47.108.221.20:2333/test/add'
     const url_update = `http://47.108.221.20:2333/test/update`
@@ -139,12 +141,12 @@ function EditableTable() {
         {
             title: '问题题号',
             dataIndex: 'problem_id',
-            editable: true
+
         },
         {
             title: '测试数据编号',
             dataIndex: 'test_id',
-            editable: true
+
 
         },
         {
@@ -162,7 +164,7 @@ function EditableTable() {
             dataIndex: 'op',
             render: (_, record) => (
                 <Button
-                    onClick={() => removeRow(record.key)}
+                    onClick={() => removeRow(record.test_id, record.key)}
                     type='primary'
                     status='danger'
                 >
@@ -171,20 +173,31 @@ function EditableTable() {
             )
         }
     ];
-
+    useEffect(() => {
+        getRow(p_id)
+    }, [p_id])
     function handleSave(row) {
         const newData = [...data];
         const index = newData.findIndex(item => row.key === item.key);
         newData.splice(index, 1, { ...newData[index], ...row });
+        const body = { ...newData[index], problem_id: newData[index].problem_id - 0 }
+
+        delete body.key
+        const url = url_update + '/' + body.test_id
+        delete body.test_id
+        console.log(body);
+        update_data(url, body)
         setData(newData);
     }
 
-    function removeRow(key) {
+    function removeRow(id, key) {
         setData(data.filter(item => item.key !== key));
+        const url = url_del + '/' + id;
+        delete_data(url)
     }
-    async function getRow(id) {
+    async function getRow(problem_id) {
         try {
-            const url = url_get + '/' + id;
+            const url = url_get + '/' + problem_id;
             const data = await search_data(url);
             console.log(data);
 
@@ -203,17 +216,28 @@ function EditableTable() {
             // Handle the error or display an appropriate message to the user
         }
     }
-    function addRow() {
+    async function addRow(problem_id) {
+
         setCount(count + 1);
+
+        add_data(url_add, {
+            problem_id: problem_id,
+            user_id: user_id,
+            input: '请自己修改',
+            output: '请自己修改'
+        })
+        const data_list = await search_data(url_get + '/' + problem_id)
         setData(
             data.concat({
                 key: `${count + 1}`,
-                problem_id: 0,
-                text_id: 0,
-                input: '',
-                output: ''
+                problem_id: problem_id,
+                test_id: testId,
+                input: '请自己修改',
+                output: '请自己修改',
+                user_id: user_id
             })
         );
+        setTestId(testId + 1)
     }
 
     return (
@@ -225,22 +249,14 @@ function EditableTable() {
                             marginBottom: 10
                         }}
                         type='primary'
-                        onClick={addRow}
+                        onClick={() => {
+                            addRow(p_id)
+                        }}
                     >
                         添加测试数据
                     </Button>
                 </Col>
-                <Col span={12}>
-                    <InputSearch
-                        searchButton='查找'
-                        defaultValue=''
-                        placeholder='输入数据编号'
-                        style={{ width: 230, marginLeft: 100 }}
-                        onSearch={(v) => {
-                            getRow(v)
-                        }}
-                    />
-                </Col>
+
             </Row>
 
 
