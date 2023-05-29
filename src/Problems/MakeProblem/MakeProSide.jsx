@@ -8,6 +8,8 @@ export default function MakeProSide() {
     const { pathname } = useLocation()
     const keys = {
         '/mkpro/post': '1',
+        '/mkpro/mk': '2',
+
         '/mkpro/text': '3',
 
 
@@ -21,7 +23,10 @@ export default function MakeProSide() {
                 <Link to='/mkpro/post'>
                     <MenuItem key='1' style={{ 'marginBottom': 28, marginTop: 28 }}>发布题目</MenuItem>
                 </Link>
-                <MenuItem key='2' style={{ 'marginBottom': 28 }}>我的题目</MenuItem>
+                <Link to='/mkpro/mk'>
+                    <MenuItem key='2' style={{ 'marginBottom': 28 }}>我的题目</MenuItem>
+                </Link>
+
                 <Link to='/mkpro/text'>
                     <MenuItem key='3' style={{ 'marginBottom': 28 }}>测试数据</MenuItem>
                 </Link>

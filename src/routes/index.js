@@ -13,7 +13,10 @@ import User from "../User/User/User.jsx";
 import MakeProblem from "../Problems/MakeProblem/MakeProblem";
 import MPP from "../Problems/MakeProblem/MakeProMain";
 import TextData from "../Problems/TextData/TextData";
+import MyPro from "../Problems/MyPro/MyPro";
 const admId = localStorage.getItem("admId");
+const userId = localStorage.getItem("userId");
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default [
   {
@@ -55,6 +58,7 @@ export default [
     children: [
       { path: "post", element: <MPP damId={admId}></MPP> },
       { path: "text", element: <TextData></TextData> },
+      { path: "mk", element: <MyPro id={userId}></MyPro> },
     ],
   },
   {
