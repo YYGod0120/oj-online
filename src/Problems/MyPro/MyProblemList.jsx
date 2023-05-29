@@ -5,7 +5,7 @@ import React, {
     useContext,
     useCallback
 } from 'react';
-import { Button, Table, Input, Select, Form } from '@arco-design/web-react';
+import { Button, Table, Input, Select, Form, Message } from '@arco-design/web-react';
 
 // const FormItem = Form.Item;
 // const EditableContext = React.createContext({});
@@ -141,16 +141,26 @@ async function getMyPro(id, url) {
             }),
         })
     ).json();
-    console.log(data.data);
+    if (data.status === 10000) {
+        Message.error('用户无数据')
+        return []
+    }
     return data.data
 }
-function EditableTable({ id }) {
+function MyProTable({ id }) {
     const [data, setData] = useState([])
+    const [count, setCount] = useState(0)
+    const user_id = id - 0
+    console.log(user_id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(async () => {
-        const data = await getMyPro(id, url)
-        setData(data)
-        console.log(data);
+        const oldData = await getMyPro(user_id, url)
+        const newData = oldData.map(item => ({
+            ...item,
+            key: count
+        }))
+        setData(newData)
+        console.log(newData);
     }, [])
     const columns = [
         {
@@ -162,32 +172,31 @@ function EditableTable({ id }) {
             title: '题号',
             dataIndex: 'problem_id',
         },
-        // {
-        //     title: '删除',
-        //     dataIndex: 'problem_id',
-        //     render: (_, record) => (
-        //         <Button
-        //             onClick={() => removeRow(record.key)}
-        //             type='primary'
-        //             status='danger'
-        //         >
-        //             Delete
-        //         </Button>
-        //     )
-        // },
-        // {
-        //     title: '编辑',
-        //     dataIndex: 'user_id',
-        //     render: () => (
-        //         <Button
-        //             onClick={() => console.log('跳转')}
-        //             type='primary'
-
-        //         >
-        //             Edit
-        //         </Button>
-        //     )
-        // }
+        {
+            title: '删除',
+            dataIndex: 'delete',
+            render: (_, record) => (
+                <Button
+                    onClick={() => removeRow(record.key)}
+                    type='primary'
+                    status='danger'
+                >
+                    Delete
+                </Button>
+            )
+        },
+        {
+            title: '编辑',
+            dataIndex: 'edit',
+            render: () => (
+                <Button
+                    onClick={() => console.log('跳转')}
+                    type='primary'
+                >
+                    Edit
+                </Button>
+            )
+        }
     ];
 
     function removeRow(key) {
@@ -207,4 +216,4 @@ function EditableTable({ id }) {
     );
 }
 
-export default EditableTable;
+export default MyProTable;

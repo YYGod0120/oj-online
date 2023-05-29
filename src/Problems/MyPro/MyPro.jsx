@@ -1,10 +1,11 @@
 import React from 'react'
 import { Button, Table, Input, Select, Form, Grid, Message, Typography } from '@arco-design/web-react';
-import EditableTable from './MyProblemList';
+import MyProTable from './MyProblemList';
 const Row = Grid.Row
 const Col = Grid.Col
-export default function MyPro(id) {
+export default function MyPro({ id }) {
     const user_id = id - 0
+    console.log(user_id);
     return (
         <>
             <Row>
@@ -14,7 +15,7 @@ export default function MyPro(id) {
             </Row>
             <Row>
                 <Col>
-                    <EditableTable id={user_id} />
+                    <MyProTable id={user_id} />
                 </Col>
             </Row>
         </>
