@@ -14,9 +14,9 @@ const { Option } = Select;
 const options = ['极易', '容易', '中等', '困难', '极难'];
 
 export default function MPP({ admId }) {
-
+    const id = admId - 0
     const [formData, setFormData] = useState({
-        user_id: (admId - 0),
+        user_id: id,
         title: '',
         description: '',
         description_input: '',
@@ -43,7 +43,11 @@ export default function MPP({ admId }) {
             const data = await response.json();
             console.log(data);
 
-            Message.success('题目发送成功')
+            if (data.status === 200) {
+                Message.success('题目上传成功')
+            } else {
+                Message.error('题目上传失败')
+            }
             // Process the response data as needed
         } catch (error) {
             Message.error('题目发送失败')

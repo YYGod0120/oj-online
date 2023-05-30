@@ -149,24 +149,34 @@ async function getMyPro(id, url) {
 }
 function MyProTable({ id }) {
     const [data, setData] = useState([])
-    const [count, setCount] = useState(0)
+
+
     const user_id = id - 0
     console.log(user_id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(async () => {
-        const oldData = await getMyPro(user_id, url)
-        const newData = oldData.map(item => ({
-            ...item,
-            key: count
-        }))
-        setData(newData)
-        console.log(newData);
-    }, [])
+    useEffect(() => {
+        const fetchData = async () => {
+            let count = 0
+            try {
+                const oldData = await getMyPro(user_id, url);
+                const newData = oldData.map(item => ({
+                    ...item,
+                    key: count++
+                }));
+                setData(newData);
+                console.log(newData);
+            } catch (error) {
+                // 错误处理逻辑
+                console.error("发生错误:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
     const columns = [
         {
             title: '标题',
             dataIndex: 'title',
-
         },
         {
             title: '题号',
@@ -177,7 +187,7 @@ function MyProTable({ id }) {
             dataIndex: 'delete',
             render: (_, record) => (
                 <Button
-                    onClick={() => removeRow(record.key)}
+                    onClick={() => removeRow(record.key, record.problem_id)}
                     type='primary'
                     status='danger'
                 >
@@ -198,9 +208,22 @@ function MyProTable({ id }) {
             )
         }
     ];
-
-    function removeRow(key) {
+    async function delete_data(url) {
+        const data = await (
+            await fetch(url, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + localStorage.getItem("token"),
+                },
+            })
+        ).json();
+        console.log(data);
+        return data;
+    }
+    function removeRow(key, id) {
         setData(data.filter(item => item.key !== key));
+        delete_data(`http://47.108.221.20:2333/problem/delete/${id}`)
     }
 
 

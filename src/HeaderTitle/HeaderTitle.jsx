@@ -16,7 +16,9 @@ export default function HeaderTitle({ token, userId, admId }) {
         '/list': '2',
         '/mkpro': '4',
         '/mkpro/post': '4',
-        '/mkpro/textdata': '4',
+        '/mkpro/text': '4',
+        '/mkpro/mk': '4',
+
         '/check': '3',
         '/login': '5',
         '/cpw': '6',

@@ -56,7 +56,7 @@ export default [
     path: "/mkpro",
     element: <MakeProblem />,
     children: [
-      { path: "post", element: <MPP damId={admId}></MPP> },
+      { path: "post", element: <MPP admId={admId}></MPP> },
       { path: "text", element: <TextData></TextData> },
       { path: "mk", element: <MyPro id={userId}></MyPro> },
     ],
