@@ -17,7 +17,7 @@ function genderMake(str) {
         return 0
     }
 }
-export default function UserEdit() {
+export default function UserEdit({ user }) {
 
     const [data, setData] = useState({ user_id: user_id })
     async function postData(url, body) {
@@ -58,7 +58,7 @@ export default function UserEdit() {
                         field='name'
 
                     >
-                        <Input placeholder='' style={{}} onChange={(v) => {
+                        <Input placeholder='' defaultValue={data.name} onChange={(v) => {
                             console.log(v);
                             setData({
                                 ...data,
@@ -69,7 +69,7 @@ export default function UserEdit() {
                 </Col>
                 <Col span={10} offset={1}>
                     <FormItem label='昵称' field='nickname'>
-                        <Input placeholder='' onChange={(v) => {
+                        <Input placeholder='' defaultValue={data.nickname} onChange={(v) => {
                             setData({
                                 ...data,
                                 'nickname': v
@@ -124,7 +124,7 @@ export default function UserEdit() {
             <Row>
                 <Col span={12}>
                     <FormItem labelAlign='left' label='邮箱' field='email'>
-                        <Input placeholder='' onChange={(v) => {
+                        <Input placeholder='' defaultValue={data.email} onChange={(v) => {
                             setData({
                                 ...data,
                                 'email': v

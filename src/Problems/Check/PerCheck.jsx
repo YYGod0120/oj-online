@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Typography, Input, Table, Message } from '@arco-design/web-react';
 import { getProblem_id, columns } from './CheckList';
-
+import './MyCheck.css'
 const Row = Grid.Row;
 const Col = Grid.Col;
 const InputSearch = Input.Search;
@@ -11,7 +11,7 @@ export default function PerCheck({ userId }) {
     const user_id = userId - 0;
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
-
+    const [isRight, setIsRight] = useState('')
     useEffect(() => {
         getData();
     }, [user_id]);
@@ -20,6 +20,7 @@ export default function PerCheck({ userId }) {
         setLoading(true);
         try {
             const result = await getProblem_id(problem_id_url, { user_id: user_id });
+            setIsRight(result.status === '正确' ? 'right' : 'error');
             setData(result);
             console.log(result);
         } catch (error) {
@@ -67,7 +68,7 @@ export default function PerCheck({ userId }) {
                     {loading ? (
                         <Typography.Text>Loading...</Typography.Text>
                     ) : (
-                        <Table columns={columns} data={data} />
+                        <Table className={`${isRight} myTable`} columns={columns} data={data} />
                     )}
                 </Col>
             </Row>

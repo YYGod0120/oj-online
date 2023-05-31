@@ -24,7 +24,8 @@ export default function UpdataPro({ data }) {
         description_output: description_output,
         sample_input: sample_input,
         sample_output: sample_output,
-        level: level
+        level: level,
+        user_id: localStorage.getItem('userId') - 0
     });
 
     const url = 'http://47.108.221.20:2333/problem/update/' + problem_id;

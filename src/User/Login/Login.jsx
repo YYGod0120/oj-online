@@ -45,13 +45,13 @@ export default function Login() {
                             localStorage.setItem('token', data.data.token)
                             // eslint-disable-next-line no-undef
                             localStorage.setItem('userId', data.data.user_id)
-                            localStorage.setItem('admId', data.data.user_id)
+
 
                             // 先设置管理员id和用户id一样之后再做调整
-                            if (data.data.role !== 'admin') {
+                            if (data.data.role === 'admin') {
                                 localStorage.setItem('admId', data.data.user_id)
                             }
-                            console.log(data.data.user_id);
+                            console.log(data.data);
                             Message.success('登录成功');
                             window.location.reload()
                         } else {

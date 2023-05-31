@@ -175,7 +175,6 @@ function EditableTable({ p_id }) {
         const index = newData.findIndex(item => row.key === item.key);
         newData.splice(index, 1, { ...newData[index], ...row });
         const body = { ...newData[index], problem_id: newData[index].problem_id - 0 }
-
         delete body.key
         const url = url_update + '/' + body.test_id
         delete body.test_id

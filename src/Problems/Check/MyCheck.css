@@ -1,0 +1,13 @@
+.right td:nth-child(2) {
+  /* 在这里替换'n'为你要设置颜色的列的索引 */
+  color: #27c346;
+  /* 替换'#your-color'为你想要的颜色值 */
+}
+.error td:nth-child(2) {
+  /* 在这里替换'n'为你要设置颜色的列的索引 */
+  color: #f76965;
+  /* 替换'#your-color'为你想要的颜色值 */
+}
+.myTable th {
+  color: #17171a;
+}

@@ -104,7 +104,7 @@ export default function User() {
                 }} /></Typography.Title>
                 {!isEdit ? (<Descriptions colon=' :' column={2} layout='vertical' data={data} size='large' />
                 ) : (
-                    <UserEdit></UserEdit>
+                    <UserEdit user={data}></UserEdit>
                 )}
 
 
