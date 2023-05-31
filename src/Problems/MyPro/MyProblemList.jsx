@@ -6,7 +6,7 @@ import React, {
     useCallback
 } from 'react';
 import { Button, Table, Input, Select, Form, Message } from '@arco-design/web-react';
-
+import UpdataPro from './UpdatePro';
 // const FormItem = Form.Item;
 // const EditableContext = React.createContext({});
 
@@ -149,7 +149,7 @@ async function getMyPro(id, url) {
 }
 function MyProTable({ id }) {
     const [data, setData] = useState([])
-
+    const [isEdit, setIsEdit] = useState(false)
 
     const user_id = id - 0
     console.log(user_id);
@@ -198,12 +198,15 @@ function MyProTable({ id }) {
         {
             title: '编辑',
             dataIndex: 'edit',
-            render: () => (
+            render: (_, record) => (
                 <Button
-                    onClick={() => console.log('跳转')}
+                    onClick={() => {
+                        console.log(record)
+                        setIsEdit(record)
+                    }}
                     type='primary'
                 >
-                    Edit
+                    编辑
                 </Button>
             )
         }
@@ -221,20 +224,30 @@ function MyProTable({ id }) {
         console.log(data);
         return data;
     }
-    function removeRow(key, id) {
+    async function removeRow(key, id) {
         setData(data.filter(item => item.key !== key));
-        delete_data(`http://47.108.221.20:2333/problem/delete/${id}`)
+        const res = await delete_data(`http://47.108.221.20:2333/problem/delete/${id}`)
+        console.log(res);
+        if (res.status === 200) {
+            Message.success('删除成功')
+        } else {
+            Message.error('删除失败')
+        }
     }
 
 
 
     return (
         <>
-            <Table
-                data={data}
-                columns={columns}
-                className='table-demo-editable-cell'
-            />
+            {!isEdit ? (
+                <Table
+                    data={data}
+                    columns={columns}
+                    className='table-demo-editable-cell'
+                />
+            ) : (
+                <UpdataPro data={isEdit}></UpdataPro>
+            )}
         </>
     );
 }

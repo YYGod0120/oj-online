@@ -129,7 +129,7 @@ function EditableCell(props) {
 }
 
 function EditableTable({ p_id }) {
-    console.log(p_id);
+
     const [testId, setTestId] = useState(44)
     const url_get = `http://47.108.221.20:2333/test/search`
     const url_add = 'http://47.108.221.20:2333/test/add'
