@@ -46,9 +46,23 @@ export default function List() {
 
     return (
         <div style={{ width: '100%', marginTop: '40px' }}>
+            <Row >
+                <Col offset={5} style={{ marginBottom: 10 }}>
+                    <InputSearch
+                        searchButton
+                        defaultValue=''
+                        placeholder='输入关键字'
+                        style={{ width: 250 }}
+                        onSearch={(event) => {
+                            setSearchText(event)
+                        }} // 添加点击事件处理函数
+                    />
+                </Col>
+
+            </Row>
             <Row justify='center'>
                 <Col></Col>
-                <Col span={12} offset={3}>
+                <Col span={16} offset={2}>
                     <Table
 
                         columns={columns}
@@ -64,17 +78,7 @@ export default function List() {
 
                     />
                 </Col>
-                <Col span={8}>
-                    <InputSearch
-                        searchButton
-                        defaultValue=''
-                        placeholder='输入关键字'
-                        style={{ width: 250 }}
-                        onSearch={(event) => {
-                            setSearchText(event)
-                        }} // 添加点击事件处理函数
-                    />
-                </Col>
+
             </Row>
 
 

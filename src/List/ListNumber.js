@@ -26,4 +26,8 @@ export const columns = [
     title: "等级",
     dataIndex: "level",
   },
+  {
+    title: "更新时间",
+    dataIndex: "update_time",
+  },
 ];

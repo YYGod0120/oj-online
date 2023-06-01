@@ -81,10 +81,10 @@ export default function Problem() {
                             </Option>
                         ))}
                     </Select>
-                    <MyCodeMirror language={selectValue} onChange={(ev, value) => {
+                    <MyCodeMirror language={selectValue.toLowerCase()} onChange={(ev, value) => {
                         setCode(ev)
                         console.log(ev);
-                        console.log(typeof ev);
+
 
                     }} />
                     <Space align='end' size={470}>
@@ -93,7 +93,6 @@ export default function Problem() {
                         </Button>
                         <Button
                             type='primary'
-
                             long
                             style={{ width: 100 }}
                             onClick={handleSubmit}

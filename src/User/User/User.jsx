@@ -53,6 +53,9 @@ export default function User() {
     ]
     const [data, setData] = useState(data_start)
     const [isEdit, setIsEdit] = useState(false)
+    const handleEditButtonClick = () => {
+        setIsEdit(false);
+    };
     const url = `http://47.108.221.20:2333/info/get/${localStorage.getItem('userId')}`
     useEffect(() => {
         async function getData(url) {
@@ -104,7 +107,7 @@ export default function User() {
                 }} /></Typography.Title>
                 {!isEdit ? (<Descriptions colon=' :' column={2} layout='vertical' data={data} size='large' />
                 ) : (
-                    <UserEdit user={data}></UserEdit>
+                    <UserEdit user={data} onEidtButtonClick={handleEditButtonClick}></UserEdit>
                 )}
 
 

@@ -17,8 +17,8 @@ function genderMake(str) {
         return 0
     }
 }
-export default function UserEdit({ user }) {
-
+export default function UserEdit({ user, onEidtButtonClick }) {
+    console.log(user);
     const [data, setData] = useState({ user_id: user_id })
     async function postData(url, body) {
         const rep = await (await fetch(url, {
@@ -43,6 +43,7 @@ export default function UserEdit({ user }) {
             onSubmit={(v) => {
                 console.log(data);
                 postData(url, data)
+                onEidtButtonClick()
             }}
             onChange={() => {
                 console.log(data);
@@ -56,9 +57,9 @@ export default function UserEdit({ user }) {
                         label='名字'
                         style={{ marginRight: 15 }}
                         field='name'
-
+                        initialValue={user[0].value}
                     >
-                        <Input placeholder='' defaultValue={data.name} onChange={(v) => {
+                        <Input placeholder='' onChange={(v) => {
                             console.log(v);
                             setData({
                                 ...data,
@@ -68,8 +69,8 @@ export default function UserEdit({ user }) {
                     </FormItem>
                 </Col>
                 <Col span={10} offset={1}>
-                    <FormItem label='昵称' field='nickname'>
-                        <Input placeholder='' defaultValue={data.nickname} onChange={(v) => {
+                    <FormItem label='昵称' field='nickname' initialValue={user[2].value}>
+                        <Input placeholder='' onChange={(v) => {
                             setData({
                                 ...data,
                                 'nickname': v
@@ -82,9 +83,9 @@ export default function UserEdit({ user }) {
             <Row>
 
                 <Col span={10} >
-                    <FormItem label='性别' field='gender'>
+                    <FormItem label='性别' field='gender' initialValue={user[3].value}>
                         <Select
-                            defaultValue={'保密'}
+
                             style={{ width: 200 }}
                             onChange={(value) =>
                                 setData({
@@ -102,15 +103,17 @@ export default function UserEdit({ user }) {
                     </FormItem>
                 </Col>
                 <Col span={10} offset={1}>
-                    <FormItem label='生日' field='birthday'>
-                        <DatePicker onChange={(v) => {
+                    <FormItem label='生日' field='birthday' initialValue={user[4].value}>
+                        <DatePicker format="YYYY/M/D" onChange={(v) => {
+                            console.log(v);
                             setData({
                                 ...data,
-                                'year': v.slice(0, 4) - 0,
-                                'month': v.slice(5, 7) - 0,
-                                'day': v.slice(8, 10) - 0,
+                                'year': v.split('/')[0],
+                                'month': v.split('/')[1],
+                                'day': v.split('/')[2],
 
                             })
+
                         }} />
 
                     </FormItem>
@@ -123,8 +126,8 @@ export default function UserEdit({ user }) {
             </Row>
             <Row>
                 <Col span={12}>
-                    <FormItem labelAlign='left' label='邮箱' field='email'>
-                        <Input placeholder='' defaultValue={data.email} onChange={(v) => {
+                    <FormItem labelAlign='left' label='邮箱' field='email' initialValue={user[5].value}>
+                        <Input placeholder='' onChange={(v) => {
                             setData({
                                 ...data,
                                 'email': v
@@ -137,7 +140,7 @@ export default function UserEdit({ user }) {
 
 
             <FormItem wrapperCol={{ offset: 5 }}>
-                <Button type='primary' htmlType='submit'>提交</Button>
+                <Button type='primary' htmlType='submit' >提交</Button>
             </FormItem>
         </Form>
     )
