@@ -45,8 +45,10 @@ export default function Problem() {
         if (data.status === 200) {
             Message.success('提交成功')
             navigate("/check")
+        } else if (data.status === 1005) {
+            Message.error('重复提交')
         } else {
-            Message.error('请登陆或登录已过期')
+            Message.error('登录已过期')
         }
         console.log(data);
         return data

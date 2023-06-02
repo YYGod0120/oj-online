@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import "./List.css";
 import { Table } from '@arco-design/web-react';
 import { columns } from "./ListNumber";
-import { Input, Space } from '@arco-design/web-react';
+import { Input, Select } from '@arco-design/web-react';
 import { Grid } from '@arco-design/web-react';
+import { json } from 'react-router-dom';
 const Row = Grid.Row;
 const Col = Grid.Col;
 
@@ -16,7 +17,7 @@ const getData = async function (url, body) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(body),
+        body: body
     });
     const data0 = await rep.json();
     console.log(data0.data);
@@ -25,12 +26,16 @@ const getData = async function (url, body) {
 
 export default function List() {
     const [data, setData] = useState([]); // 初始化 data 状态为一个空数组
-    const [searchText, setSearchText] = useState(''); // 初始化 searchText 状态为一个空字符串
-
+    const [searchText, setSearchText] = useState({}); // 初始化 searchText 状态为一个空字符串
+    const [searchTextBefore, setSearchTextBefore] = useState('keyword')
+    function handleSelectChange(value) {
+        console.log(value);
+        setSearchTextBefore(value)
+    }
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const result = await getData(url, { keyword: searchText }); // 调用 getData 函数获取数据，传递 searchText 作为 body 参数
+                const result = await getData(url, JSON.stringify(searchText)); // 调用 getData 函数获取数据，传递 searchText 作为 body 参数
                 setData(result); // 更新 data 状态
                 console.log(result);
 
@@ -47,16 +52,34 @@ export default function List() {
     return (
         <div style={{ width: '100%', marginTop: '40px' }}>
             <Row >
-                <Col offset={5} style={{ marginBottom: 10 }}>
-                    <InputSearch
-                        searchButton
-                        defaultValue=''
-                        placeholder='输入关键字'
-                        style={{ width: 250 }}
-                        onSearch={(event) => {
-                            setSearchText(event)
-                        }} // 添加点击事件处理函数
-                    />
+                <Col span={5} offset={13} style={{ marginBottom: 10 }}>
+                    <Input.Group compact>
+                        <Select defaultValue='关键词' bordered={false} style={{ width: '35%' }} onChange={handleSelectChange}>
+                            <Select.Option value='problem_id'>题目编号</Select.Option>
+                            <Select.Option value='user_id'>出题者</Select.Option>
+                            <Select.Option value='level'>难度</Select.Option>
+                            <Select.Option value='keyword'>关键词</Select.Option>
+                        </Select>
+                        <InputSearch
+                            searchButton
+                            defaultValue=''
+                            placeholder={`${searchTextBefore}`}
+                            style={{ width: '65%' }}
+                            onSearch={(event) => {
+
+                                if (searchTextBefore === 'problem_id' || searchTextBefore === 'user_id') {
+                                    setSearchText({
+                                        [searchTextBefore]: event - 0
+                                    })
+                                } else {
+                                    setSearchText({
+                                        [searchTextBefore]: event
+                                    })
+                                }
+                                console.log(searchText);
+                            }} // 添加点击事件处理函数
+                        />
+                    </Input.Group>
                 </Col>
 
             </Row>

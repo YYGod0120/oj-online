@@ -12,3 +12,12 @@
 .select {
   caret-color: transparent;
 }
+.easy {
+  color: #129a37;
+}
+.mid {
+  color: #d26913;
+}
+.hard {
+  color: #cb2e34;
+}
