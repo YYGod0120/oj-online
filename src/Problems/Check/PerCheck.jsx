@@ -25,7 +25,7 @@ export default function PerCheck({ userId }) {
             console.log(result);
         } catch (error) {
             // 处理错误情况
-            Message.error("获取数据时出错:", error);
+
         } finally {
             setLoading(false);
         }

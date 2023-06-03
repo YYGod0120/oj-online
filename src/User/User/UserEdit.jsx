@@ -14,7 +14,7 @@ function genderMake(str) {
     } else if (str === '女') {
         return 2
     } else {
-        return 0
+        return 3
     }
 }
 export default function UserEdit({ user, onEidtButtonClick }) {
@@ -108,9 +108,9 @@ export default function UserEdit({ user, onEidtButtonClick }) {
                             console.log(v);
                             setData({
                                 ...data,
-                                'year': v.split('/')[0],
-                                'month': v.split('/')[1],
-                                'day': v.split('/')[2],
+                                'year': v.split('/')[0] - 0,
+                                'month': v.split('/')[1] - 0,
+                                'day': v.split('/')[2] - 0,
 
                             })
 

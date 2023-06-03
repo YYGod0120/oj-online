@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 export async function getProblem_id(url, body) {
   const rep = await fetch(url, {
     method: "POST",
@@ -16,6 +17,13 @@ export const columns = [
   {
     title: "题目",
     dataIndex: "title",
+    render: (text, record) => (
+      <div>
+        <Link to={`/problems/${record.problem_id}`} className="list">
+          <span>{text}</span>
+        </Link>
+      </div>
+    ),
   },
   {
     title: "提交结果",

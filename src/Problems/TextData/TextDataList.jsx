@@ -194,7 +194,7 @@ function EditableTable({ p_id }) {
             const data = await search_data(url);
             console.log(data);
 
-            if (!data || data.length === 0) {
+            if (data.length === 0) {
                 Message.error("No data");
                 setData([])
             }

@@ -7,7 +7,7 @@ import { Outlet } from 'react-router-dom';
 const Row = Grid.Row
 const Col = Grid.Col
 function genter(number) {
-    if (number === 0) {
+    if (number === 3) {
         return '保密'
     } else if (number === 1) {
         return '男'
